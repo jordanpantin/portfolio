@@ -1,0 +1,75 @@
+---
+// Réseau sociaux réutilisable
+// Props (optionelles) :
+// github, docker, stackoverflow, linkedin, twitter (URLs)
+// size : classes utilitaires Tailwind pour la taille des icônes (ex: 'w-5 h-5')
+export interface Props {
+    github?: string;
+    docker?: string;
+    stackoverflow?: string;
+    linkedin?: string;
+    twitter?: string;
+    size?: string;
+}
+
+export let github: string = "https://github.com/jordanpantin";
+export let docker: string = "https://hub.docker.com/u/jordanpantin";
+export let stackoverflow: string = "https://stackoverflow.com/users/7895727";
+export let linkedin: string = "https://www.linkedin.com/in/jordan-pantin";
+
+export let size: string = "text-2xl";
+---
+
+<div class="flex items-center gap-3">
+    <a
+        class={`btn btn-ghost p-3 ${size} relative group`}
+        href={linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        title="LinkedIn">
+        <iconify-icon icon="tabler:brand-linkedin" class="inline-block"></iconify-icon>
+        <span class="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-base-300 text-sm px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 text-base-content">
+            LinkedIn
+        </span>
+    </a>
+
+    <a
+        class={`btn btn-ghost p-3 ${size} relative group`}
+        href={github}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+        title="GitHub">
+        <iconify-icon icon="tabler:brand-github" class="inline-block"></iconify-icon>
+        <span class="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-base-300 text-sm px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 text-base-content">
+            GitHub
+        </span>
+    </a>
+
+    <a
+        class={`btn btn-ghost p-3 ${size} relative group`}
+        href={docker}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Docker"
+        title="Docker">
+        <iconify-icon icon="tabler:brand-docker" class="inline-block"></iconify-icon>
+        <span class="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-base-300 text-sm px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 text-base-content">
+            Docker
+        </span>
+    </a>
+
+    <a
+        class={`btn btn-ghost p-3 ${size} relative group`}
+        href={stackoverflow}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Stack Overflow"
+        title="Stack Overflow">
+        <iconify-icon icon="tabler:brand-stackoverflow" class="inline-block"></iconify-icon>
+        <span class="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-base-300 text-sm px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 text-base-content">
+            Stack Overflow
+        </span>
+    </a>
+</div>

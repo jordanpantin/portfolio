@@ -1,0 +1,52 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { colorForTag } from "../../lib/tagColor";
+---
+
+<Layout title="Tech Lead — Terideal">
+    <main class="container mx-auto px-4 py-8">
+        <section id="hero" class="mb-8">
+            <div class="flex items-center justify-between mb-6">
+                <h1 class="text-3xl font-bold">Développement d'un module pour la gestion des interventions</h1>
+                
+                <a href="/#projects" class="btn btn-primary"
+                    >Retour aux Projets</a
+                >
+            </div>
+            <p class="text-sm text-base-content/70 mb-2">Tech Lead </p>
+            <p class="mb-4">Sur application existante, responsable de la conception technique, de la qualité du code et de la mise en place d'infrastructures pour fiabiliser les livraisons.</p>
+        </section>
+        
+        <section id="details" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Contributions principales</h2>
+            <ul class="list-disc pl-6 space-y-3 mb-6">
+                <li><strong>Implémentation de nouvelles fonctionnalités</strong> : spécifications techniques, développement et tests automatisés pour livrer des fonctionnalités métiers robustes.</li>
+                <li><strong>Refactoring pour injection de dépendances</strong> : restructuration du code pour introduire DI, faciliter les tests unitaires et améliorer la maintenabilité.</li>
+                <li><strong>Mise à jour des pipelines CI/CD</strong> : migration des pipelines suite à l'arrêt d'AppCenter, adaptation des builds, tests et déploiements automatisés.</li>
+                <li><strong>Gestion d'une nouvelle solution de logs</strong> : intégration d'une solution centralisée pour l'agrégation, la rétention et l'analyse des logs.</li>
+                <li><strong>Mise en place d'un mécanisme d'exécution de tâches en arrière-plan</strong> : conception et implémentation d'un scheduler/worker fiable pour les traitements asynchrones.</li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2">
+                {[
+                    '.NET',
+                    'Azure DevOps',
+                    'Refactoring',
+                    'CI/CD',
+                    'AppCenter',
+                    'Logging',
+                    'Background Jobs',
+                    'Testing',
+                ].map((t) => (
+                    <div class={`badge badge-${colorForTag(t)} badge-sm`}>{t}</div>
+                ))}
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    @media (max-width: 768px) {
+        .btn.btn-primary.absolute { position: static; transform: none; margin-top: 1rem; }
+    }
+</style>

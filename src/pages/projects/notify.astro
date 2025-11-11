@@ -1,0 +1,109 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { colorForTag } from "../../lib/tagColor";
+---
+
+<Layout title="Mission : Renfort Développeur Full Stack">
+    <main class="container mx-auto px-4 py-8">
+        <section id="hero" class="mb-12">
+            <div class="relative mb-4 text-center">
+                <h1 class="text-4xl font-bold">
+                    Mission : Renfort Développeur Full Stack
+                </h1>
+                <a
+                    href="/#projects"
+                    class="btn btn-primary absolute right-0 top-1/2 -translate-y-1/2"
+                    >Retour aux Projets</a
+                >
+            </div>
+            <p class="text-xl mb-6 text-center">
+                BPCE IT - Application de Communication et Notification
+            </p>
+            <div class="text-center">
+                <span class="icon-[mdi--code-braces] text-7xl mb-4 inline-block"
+                ></span>
+            </div>
+        </section>
+
+        <!-- Section Description -->
+        <section id="description" class="mb-12">
+            <h2 class="text-2xl font-bold mb-4">Description</h2>
+            <p>
+                J'ai renforcé l'équipe existante en charge de l'application de
+                communication et notification chez BPCE IT. En tant que
+                développeur full stack polyvalent avec une expérience
+                significative, j'ai contribué au développement d'applications
+                web en .Net ainsi qu'aux applications mobiles.
+            </p>
+            <p class="mt-2">Équipe : 5 personnes (2 MOA + 3 DEV)</p>
+        </section>
+
+        <!-- Section Compétences Techniques -->
+        <section id="competences" class="mb-12">
+            <h2 class="text-2xl font-bold mb-4">Compétences Techniques</h2>
+            <div class="flex flex-wrap gap-2">
+                <div class={`badge badge-${colorForTag('.Net')} badge-lg`}>.Net</div>
+                <div class={`badge badge-${colorForTag('MVC')} badge-lg`}>MVC</div>
+                <div class={`badge badge-${colorForTag('MAUI')} badge-lg`}>MAUI</div>
+                <div class={`badge badge-${colorForTag('DevExpress')} badge-lg`}>DevExpress</div>
+                <div class={`badge badge-${colorForTag('BitBucket')} badge-lg`}>BitBucket</div>
+                <div class={`badge badge-${colorForTag('Jira')} badge-lg`}>Jira</div>
+            </div>
+        </section>
+
+        <!-- Section Tâches Principales -->
+        <section id="taches" class="mb-12">
+            <ul class="list bg-base-100 rounded-box shadow-md">
+                <li class="p-4 pb-2 text-xl opacity-60 tracking-wide">
+                    Tâches Principales
+                </li>
+
+                <li class="list-row">
+                    <div>
+                        <div>Maintien en Condition Opérationnelle</div>
+                    </div>
+                </li>
+
+                <li class="list-row">
+                    <div>
+                        <div>
+                            Exploitation, administration, support et dépannage
+                            de l'application existante.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-row">
+                    <div>
+                        <div>Renfort Développement</div>
+                    </div>
+                </li>
+
+                <li class="list-row">
+                    <div>
+                        <div>
+                            Renfort dans les étapes de développement des
+                            nouvelles fonctionnalités de l'application, WEB et
+                            Mobile.
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    @media (max-width: 768px) {
+        .relative.text-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .btn.btn-primary.absolute {
+            position: static;
+            transform: none;
+            margin-top: 1rem;
+        }
+    }
+</style>

@@ -1,0 +1,140 @@
+---
+import SocialLinks from "../components/shared/SocialLinks.astro";
+let navItems = [
+    { href: "/#home", label: "Accueil" },
+    { href: "/#whatido", label: "Compétences" },
+    { href: "/#experiences", label: "Expérience" },
+    { href: "/#projects", label: "Projets" },
+    { href: "/#contact", label: "Contact" },
+];
+---
+
+<script is:inline>
+    // load save theme or system preference. default to light
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
+    const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", initialTheme);
+
+    // change theme
+    function toggleTheme() {
+        const current = document.documentElement.getAttribute("data-theme");
+        const newTheme = current === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+    }
+</script>
+
+<style is:global>
+    .drawer-side {
+        z-index: 50 !important;
+    }
+    .drawer-overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+</style>
+
+<!-- ==== NAVBAR (Desktop or Mobile) ==== -->
+<div
+    class="navbar bg-base-100/80 backdrop-blur-sm sticky top-0 z-50 border-b border-base-300">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+        <!-- Desktop nav items -->
+        <ul class="hidden lg:flex menu menu-horizontal px-1 gap-1">
+            {
+                navItems.map((item) => (
+                    <li>
+                        <a href={item.href} class="btn btn-ghost btn-sm">
+                            {item.label}
+                        </a>
+                    </li>
+                ))
+            }
+
+            <!-- Dark mode button (desktop) -->
+            <li class="ml-2">
+                <button
+                    onclick="toggleTheme()"
+                    class="btn btn-square btn-sm"
+                    aria-label="Basculer le thème">
+                    <iconify-icon
+                        icon="tabler:sun"
+                        class="w-6 h-6 hidden dark:inline-block"
+                        style="font-size:24px;"></iconify-icon>
+                </button>
+            </li>
+        </ul>
+
+        <!-- On the right side (desktop only) -->
+        <div class="hidden lg:flex items-center gap-3 ml-auto">
+            <SocialLinks />
+        </div>
+
+        <!-- menu hamburger -->
+        <label
+            for="drawer-menu"
+            class="lg:hidden btn btn-ghost btn-square btn-sm">
+            <iconify-icon
+                icon="tabler:menu-2"
+                class="w-6 h-6"
+                style="font-size:24px;"></iconify-icon>
+        </label>
+    </div>
+</div>
+
+<!-- DRAWER (Mobile only) -->
+<div class="drawer lg:hidden">
+    <input id="drawer-menu" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content"><slot /></div>
+    <div class="drawer-side">
+        <label
+            for="drawer-menu"
+            aria-label="close sidebar"
+            class="drawer-overlay"></label>
+        <ul
+            class="menu p-6 w-80 min-h-full bg-base-100 text-base-content gap-2">
+            <li class="menu-title text-lg mb-4"><span>Navigation</span></li>
+
+            {
+                navItems.map((item) => (
+                    <li>
+                        <a
+                            href={item.href}
+                            class="btn btn-ghost justify-start gap-3">
+                            {item.label}
+                        </a>
+                    </li>
+                ))
+            }
+
+            <!-- Social links (mobile drawer) -->
+            <li class="mt-4">
+                <SocialLinks />
+            </li>
+
+            <!-- Dark mode button -->
+            <li class="mt-6">
+                <button
+                    onclick="toggleTheme()"
+                    class="btn btn-square w-full flex justify-center"
+                    aria-label="Basculer le thème">
+                    <iconify-icon
+                        icon="tabler:sun"
+                        class="w-6 h-6 hidden dark:inline-block"
+                        style="font-size:24px;"></iconify-icon>
+                </button>
+            </li>
+
+            <li class="mt-8">
+                <label
+                    for="drawer-menu"
+                    class="btn btn-error btn-sm w-full gap-2">
+                    <iconify-icon icon="tabler:x" class="w-5 h-5"
+                    ></iconify-icon>
+                    Fermer
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>

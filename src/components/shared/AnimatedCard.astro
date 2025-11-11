@@ -1,0 +1,73 @@
+---
+interface Props {
+    /** Délai (ms) */
+    delay?: number;
+}
+
+const { delay = 120 } = Astro.props;
+---
+
+<div
+    class="animate-card opacity-0 translate-y-12
+         data-animate:opacity-100 data-animate:translate-y-0
+         data-animate:transition data-animate:duration-700 data-animate:ease-out"
+    style={`--delay: ${delay}ms;`}>
+    <slot />
+</div>
+
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(48px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    [data-animate] {
+        animation: fadeInUp 0.7s ease-out forwards;
+        animation-delay: var(--delay, 0ms);
+    }
+</style>
+
+<script>
+    declare global {
+        interface Window {
+            animateCardObserver: any;
+        }
+    }
+
+    // Observer global
+    if (!window.animateCardObserver) {
+        window.animateCardObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.setAttribute("data-animate", "");
+                    } else {
+                        entry.target.removeAttribute("data-animate");
+                        (entry.target as HTMLElement).style.opacity = "0";
+                        (entry.target as HTMLElement).style.transform =
+                            "translateY(48px)";
+                    }
+                });
+            },
+            { threshold: 0.1, rootMargin: "0px 0px -80px 0px" }
+        );
+
+        // Observe all .animate-card
+        const observeAll = () => {
+            document
+                .querySelectorAll(".animate-card:not([data-observed])")
+                .forEach((el) => {
+                    window.animateCardObserver.observe(el);
+                    el.setAttribute("data-observed", "");
+                });
+        };
+
+        observeAll();
+    }
+</script>

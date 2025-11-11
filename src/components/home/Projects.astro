@@ -1,0 +1,65 @@
+---
+import { projects } from "../../data/projects";
+import AnimatedCard from "../shared/AnimatedCard.astro";
+import { colorForTag } from "../../lib/tagColor";
+---
+
+<section class="py-24 bg-base-100" id="projects">
+    <div class="container mx-auto px-6">
+        <h2 class="text-5xl font-bold text-center mb-4 text-primary">
+            Projets
+        </h2>
+        <p class="text-center text-base-content/70 mb-16 text-lg">
+            Quelques projets réalisées à titre professionnel ou personnel
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+            {
+                projects.map((project, index) => (
+                    <AnimatedCard>
+                        <div class="group h-full">
+                            <div class="card bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 border border-base-300 rounded-2xl overflow-hidden h-full flex flex-col">
+                                <figure class="relative overflow-hidden h-56">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    />
+                                    <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                </figure>
+                                <div class="card-body p-6 flex-1 flex flex-col">
+                                    <h3 class="card-title text-xl font-bold text-primary mb-2">
+                                        {project.title}
+                                    </h3>
+                                    <p class="text-sm text-base-content/70 leading-relaxed flex-1">
+                                        {project.client}
+                                    </p>
+                                    <div class="flex items-center justify-between mt-6 gap-4">
+                                        <div class="flex flex-wrap gap-2">
+                                            {project.tags.map((tag) => (
+                                                <span class={`badge badge-${colorForTag(tag)} badge-sm font-medium`}>
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        {project.slug && (
+                                            <a
+                                                href={`/projects/${project.slug}`}
+                                                class="btn btn-primary btn-sm gap-2">
+                                                <iconify-icon
+                                                    icon="tabler:eye"
+                                                    style="font-size: 18px;"
+                                                />
+                                                Voir
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </AnimatedCard>
+                ))
+            }
+        </div>
+    </div>
+</section>
