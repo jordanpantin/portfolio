@@ -1,0 +1,81 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+    /** Titre de l'onglet */
+    title: string;
+    /** Référence du dossier, ex. « P-01 · Neos-SDI » */
+    reference: string;
+    /** Titre affiché */
+    heading: string;
+    /** Chapeau introductif */
+    lede?: string;
+    /** Tags du projet */
+    tags?: readonly string[];
+}
+
+const { title, reference, heading, lede, tags = [] } = Astro.props;
+---
+
+<Layout title={title}>
+    <article class="doc-section" style="padding-top: clamp(2.5rem, 5vw, 4rem);">
+        <div class="shell">
+            <a href="/#projects" class="nav-link">
+                <span style="color: var(--accent); margin-right: 0.4em;">←</span>
+                Retour aux projets
+            </a>
+
+            <header class="doc-header mt-6">
+                <span class="doc-no">{reference}</span>
+                <span class="doc-meta hidden sm:block">Dossier projet</span>
+            </header>
+
+            <h1 class="section-title max-w-4xl" style="font-size: clamp(1.9rem, 4vw, 3rem);">
+                {heading}<span class="accent-dot">.</span>
+            </h1>
+
+            {lede && <p class="lede mt-6">{lede}</p>}
+
+            {
+                tags.length > 0 && (
+                    <div class="tag-row mt-6">
+                        {tags.map((tag) => (
+                            <span>{tag}</span>
+                        ))}
+                    </div>
+                )
+            }
+
+            <div class="prose-doc mt-12">
+                <slot />
+            </div>
+        </div>
+    </article>
+</Layout>
+
+<style is:global>
+    .prose-doc h2 {
+        margin: 2.5rem 0 1rem;
+        padding-top: 0.7rem;
+        border-top: 1px solid var(--hairline);
+        color: var(--ink-strong);
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: -0.015em;
+    }
+
+    .prose-doc h2:first-child {
+        margin-top: 0;
+    }
+
+    .prose-doc h3 {
+        margin: 1.6rem 0 0.7rem;
+        color: var(--ink-strong);
+        font-size: 1.02rem;
+        font-weight: 600;
+    }
+
+    .prose-doc .tag-row {
+        margin-top: 1.25rem;
+    }
+</style>

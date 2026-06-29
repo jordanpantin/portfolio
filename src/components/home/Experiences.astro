@@ -1,56 +1,49 @@
 ---
-import { experiences } from '../../data/experiences';
-import AnimatedCard from '../shared/AnimatedCard.astro';
-import { colorForTag } from '../../lib/tagColor';
+import { experiences } from "../../data/experiences";
+import AnimatedCard from "../shared/AnimatedCard.astro";
 ---
 
-<section class="py-24 bg-base-200" id="experiences">
-  <div class="container mx-auto px-6">
-    <h2 class="text-5xl font-bold text-center mb-4 text-primary">Mon parcours professionnel</h2>
-    <p class="text-center text-base-content/70 mb-16 text-lg"></p>
+<section class="doc-section" id="experiences">
+    <div class="shell">
+        <div class="doc-header">
+            <span class="doc-no">04 — Parcours</span>
+            <span class="doc-meta hidden sm:block">{experiences.length} postes · 2016 — aujourd'hui</span>
+        </div>
 
-    <div class="max-w-5xl mx-auto">
-      <div class="space-y-16 relative before:absolute before:left-4 before:md:left-1/2 before:top-0 before:bottom-0 before:w-0.5 before:bg-primary/30 before:-translate-x-1/2">
-        {experiences.map((exp, index) => (
-          <div class="relative flex items-start md:items-center">
-            {/* timeline mode : indent for mobile / alternance (left and right) for desktop */}
-            <div class={`w-full pl-12 md:pl-0 md:w-auto md:flex md:flex-1 ${index % 2 === 1 ? 'md:justify-end md:pr-12' : 'md:justify-start md:pl-12'}`}>
-              <div class="w-full md:w-96">
-                <AnimatedCard delay={index * 150}>
-                  <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-base-300 rounded-2xl p-6">
-                    <div class="flex flex-col gap-4">
+        <div class="mb-12 max-w-3xl">
+            <h2 class="section-title">
+                Un parcours construit dans des contextes d'entreprise, au croisement
+                de la production et de la structuration technique<span class="accent-dot">.</span>
+            </h2>
+        </div>
 
-                      {/* Line : Icône + Titre + Année + Entreprise */}
-                      <div class="flex items-start gap-4">
-                        <div class="w-16 h-16 bg-{exp.color}/20 rounded-xl flex items-center justify-center shrink-0">
-                          <iconify-icon icon={exp.icon} style="font-size: 36px;" class={`text-primary`}></iconify-icon>
-                        </div>
-                        <div class="flex-1">
-                          <h3 class="text-xl font-bold text-primary">{exp.title}</h3>
-                          <p class="text-sm text-base-content/60">{exp.year}</p>
-                          <p class="text-sm font-medium text-secondary">{exp.company} <span class="text-base-content/50">• {exp.type}</span></p>
-                        </div>
-                      </div>
+        <div class="ruled-list">
+            {
+                experiences.map((exp, index) => (
+                    <AnimatedCard delay={index * 60}>
+                        <article class="ruled-row">
+                            <div>
+                                <p class="mono-label m-0">{exp.year}</p>
+                                <p class="muted-copy m-0 mt-2">
+                                    {exp.company}
+                                    <br />
+                                    {exp.type}
+                                </p>
+                            </div>
 
-                      <div class="pl-2">
-                        <p class="text-base-content/80 text-sm leading-relaxed">{exp.description}</p>
-                        <div class="flex flex-wrap gap-2 mt-4">
-                          {exp.tags.map(tag => (
-                            <span class={`badge badge-${colorForTag(tag)} badge-sm`}>{tag}</span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </AnimatedCard>
-              </div>
-            </div>
-
-            {/* dot on the vertical line */}
-            <div class="absolute left-4 md:left-1/2 top-6 md:top-1/2 w-4 h-4 bg-primary rounded-full -translate-x-1/2 md:-translate-y-1/2 ring-4 md:ring-8 ring-base-200"></div>
-          </div>
-        ))}
-      </div>
+                            <div>
+                                <h3 class="row-title">{exp.title}</h3>
+                                <p class="body-copy m-0 mt-2">{exp.description}</p>
+                                <div class="tag-row mt-3">
+                                    {exp.tags.map((tag) => (
+                                        <span>{tag}</span>
+                                    ))}
+                                </div>
+                            </div>
+                        </article>
+                    </AnimatedCard>
+                ))
+            }
+        </div>
     </div>
-  </div>
 </section>

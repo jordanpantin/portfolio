@@ -1,83 +1,54 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { colorForTag } from "../../lib/tagColor";
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
 ---
 
-<Layout title="Migration tenant Azure — Bicep & AVM">
-    <main class="container mx-auto px-4 py-8">
-        <section id="hero" class="mb-8">
-            <div class="flex items-center justify-between mb-4">
-                <h1 class="text-3xl font-bold">
-                    Migration d'un tenant Azure
-                </h1>
-                <a href="/#projects" class="btn btn-primary"
-                    >Retour aux Projets</a
-                >
-            </div>
+<ProjectLayout
+    title="Migration tenant Azure — Bicep & AVM"
+    reference="P-04 · Neos-SDI"
+    heading="Migration d'un tenant Azure"
+    lede="Migration d'infrastructure et réseau, création d'un réseau sécurisé avec Bastion, via Bicep et Azure Verified Modules (AVM)."
+    tags={["Azure", "Bicep", "AVM", "Bastion"]}>
+    <h2>Contexte</h2>
+    <p>
+        Réalisation d'une migration d'infrastructure Azure à l'aide de fichiers
+        Bicep et de modules Azure Verified Modules (AVM). Création d'un réseau
+        sécurisé, configuration de services (App Service, Blob Storage,
+        Functions, Insights, Logic Apps) et gestion des rôles et accès.
+    </p>
 
-            <div class="text-sm text-base-content/70 mb-4">
-                Migration infra & réseau, création de réseau sécurisé avec
-                Bastion, via Bicep & AVM
-            </div>
-            <p class="mb-4">
-                Réalisation d'une migration d'infrastructure Azure à l'aide de
-                fichiers Bicep et modules Azure Verified Modules (AVM). Création
-                d'un réseau sécurisé, configuration de services (App Service,
-                Blob Storage, Functions, Insights, Logic Apps) et gestion des
-                rôles et accès.
-            </p>
-        </section>
+    <h2>Travaux réalisés</h2>
+    <ul>
+        <li>
+            <strong>Infrastructure as Code :</strong> définition des templates
+            Bicep et utilisation des modules AVM pour provisionner les ressources
+            Azure de façon reproductible.
+        </li>
+        <li>
+            <strong>Réseau sécurisé via Bastion :</strong> création d'un réseau
+            virtuel, sous-réseaux et configuration d'Azure Bastion pour accès
+            sécurisé à la base de données.
+        </li>
+        <li>
+            <strong>Contrôle d'accès :</strong> gestion des rôles (RBAC),
+            identités managées et politiques de sécurité pour restreindre les
+            accès et assurer la conformité.
+        </li>
+    </ul>
 
-        <section id="details" class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">Travaux réalisés</h2>
-            <ul class="list-disc pl-6 space-y-3 mb-6">
-                <li>
-                    <strong>Infrastructure as Code :</strong> définition des templates
-                    Bicep et utilisation des modules AVM pour provisionner les ressources
-                    Azure de façon reproductible.
-                </li>
-                <li>
-                    <strong>Réseau sécurisé via Bastion :</strong> création d'un réseau virtuel,
-                    sous-réseaux et configuration d'Azure Bastion pour accès sécurisé
-                    à la base de données.
-                </li>
-                <li>
-                    <strong>Contrôle d'accès :</strong> gestion des rôles (RBAC),
-                    identités managées et politiques de sécurité pour restreindre
-                    les accès et assurer la conformité.
-                </li>
-            </ul>
-
-            <div class="flex flex-wrap gap-2">
-                {
-                    [
-                        "Bicep",
-                        "AVM",
-                        "Bastion",
-                        "Virtual Network",
-                        "App Service",
-                        "Blob Storage",
-                        "Application Insights",
-                        "Logic Apps",
-                        "Azure Functions",
-                        "RBAC",
-                    ].map((t) => (
-                        <div class={`badge badge-${colorForTag(t)} badge-sm`}>
-                            {t}
-                        </div>
-                    ))
-                }
-            </div>
-        </section>
-    </main>
-</Layout>
-
-<style>
-    @media (max-width: 768px) {
-        .btn.btn-primary.absolute {
-            position: static;
-            transform: none;
-            margin-top: 1rem;
+    <div class="tag-row">
+        {
+            [
+                "Bicep",
+                "AVM",
+                "Bastion",
+                "Virtual Network",
+                "App Service",
+                "Blob Storage",
+                "Application Insights",
+                "Logic Apps",
+                "Azure Functions",
+                "RBAC",
+            ].map((t) => <span>{t}</span>)
         }
-    }
-</style>
+    </div>
+</ProjectLayout>

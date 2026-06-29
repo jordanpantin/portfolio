@@ -1,128 +1,34 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { colorForTag } from "../../lib/tagColor";
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
 ---
 
-<Layout title="Jeu des Vitrines Châtillonnaises">
-    <main class="container mx-auto px-4 py-8">
-        <section id="hero" class="mb-12">
-            <div class="relative mb-4 text-center">
-                <h1 class="text-4xl font-bold">
-                    Jeu des Vitrines Châtillonnaises
-                </h1>
-                <a
-                    href="/#projects"
-                    class="btn btn-primary absolute right-0 top-1/2 -translate-y-1/2"
-                    >Retour aux Projets</a
-                >
-            </div>
-            <p class="text-xl mb-6 text-center">
-                Développement d'un jeu interactif pour les Vitrines
-                Châtillonnaises
-            </p>
-            <div class="text-center">
-                <span
-                    class="icon-[mdi--gamepad-variant] text-7xl mb-4 inline-block"
-                ></span>
-            </div>
-        </section>
+<ProjectLayout
+    title="Jeu des Vitrines Châtillonnaises"
+    reference="P-06 · Projet personnel"
+    heading="Jeu des Vitrines Châtillonnaises"
+    lede="Développement d'un jeu interactif en ligne pour une association d'entreprises locales."
+    tags={["Svelte", ".NET", "PostgreSQL", "Docker", "Linux VPS", "GitLab", "Grafana"]}>
+    <h2>Description</h2>
+    <p>
+        Développement d'un jeu interactif accessible sur smartphone et
+        ordinateur, pour une association d'entreprises locales. Les participants
+        répondent à des questions simples pour tenter de gagner de nombreux bons
+        d'achat. Projet ludique favorisant l'engagement local et les commerces de
+        proximité.
+    </p>
+    <p>
+        Hébergement sur un serveur Linux VPS avec Docker. Réalisation de
+        plusieurs sites web pour gérer les lots et vérifier si un lot a été
+        retiré ou non. Envoi d'un mail aux gagnants via l'API Brevo.
+    </p>
 
-        <!-- Section Description -->
-        <section id="description" class="mb-12">
-            <h2 class="text-2xl font-bold mb-4">Description</h2>
-            <p>
-                Développement d'un jeu interactif accessible sur smartphone et
-                ordinateur, pour une association d'entreprises locales. Les participants répondent à des questions simples
-                pour tenter de gagner de nombreux bons d'achat. Projet ludique
-                favorisant l'engagement local et les commerces de proximité.
-            </p>
-            <p class="mt-2">
-                Hébergement sur un serveur Linux VPS avec Docker. Réalisation de
-                plusieurs sites web pour gérer les lots et vérifier si un lot a
-                été retiré ou non. Envoi d'un mail pour les gagnants via l'API
-                Brevo.
-            </p>
-        </section>
-
-        <!-- Section Compétences Techniques -->
-        <section id="competences" class="mb-12">
-            <h2 class="text-2xl font-bold mb-4">Compétences Techniques</h2>
-            <div class="flex flex-wrap gap-2">
-                <div class={`badge badge-${colorForTag('Svelte')} badge-lg`}>Svelte</div>
-                <div class={`badge badge-${colorForTag('.NET')} badge-lg`}>.NET</div>
-                <div class={`badge badge-${colorForTag('PostgreSQL')} badge-lg`}>PostgreSQL</div>
-                <div class={`badge badge-${colorForTag('Docker')} badge-lg`}>Docker</div>
-                <div class={`badge badge-${colorForTag('Linux VPS')} badge-lg`}>Linux VPS</div>
-                <div class={`badge badge-${colorForTag('Gitlab')} badge-lg`}>Gitlab</div>
-                <div class={`badge badge-${colorForTag('Grafana')} badge-lg`}>Grafana</div>
-            </div>
-        </section>
-
-        <!-- Section Tâches Principales -->
-        <section id="taches" class="mb-12">
-            <ul class="list bg-base-100 rounded-box shadow-md">
-                <li class="p-4 pb-2 text-xl opacity-60 tracking-wide">
-                    Tâches Principales
-                </li>
-
-                <li class="list-row">
-                    <div>
-                        <div>Développement complet du jeu (API et Web)</div>
-                    </div>
-                </li>
-
-                <li class="list-row">
-                    <div>
-                        <div>
-                            Hébergement et Déploiement des applications & BDD
-                        </div>
-                    </div>
-                </li>
-
-                <li class="list-row">
-                    <div>
-                        <div>Gestion serveur Linux VPS</div>
-                    </div>
-                </li>
-
-                <li class="list-row">
-                    <div>
-                        <div>
-                            Mise en place Grafana pour générer des statistiques
-                            sur les participations
-                        </div>
-                    </div>
-                </li>
-
-                <li class="list-row">
-                    <div>
-                        <div>
-                            Intégration de l'API Brevo pour l'envoi de mail
-                        </div>
-                    </div>
-                </li>
-
-                <li class="list-row">
-                    <div>
-                        <div>Gestion CI/CD pour déploiement en continue</div>
-                    </div>
-                </li>
-            </ul>
-        </section>
-    </main>
-</Layout>
-
-<style>
-    @media (max-width: 768px) {
-        .relative.text-center {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .btn.btn-primary.absolute {
-            position: static;
-            transform: none;
-            margin-top: 1rem;
-        }
-    }
-</style>
+    <h2>Tâches principales</h2>
+    <ul>
+        <li>Développement complet du jeu (API et web).</li>
+        <li>Hébergement et déploiement des applications et de la base de données.</li>
+        <li>Gestion du serveur Linux VPS.</li>
+        <li>Mise en place de Grafana pour générer des statistiques sur les participations.</li>
+        <li>Intégration de l'API Brevo pour l'envoi de mails.</li>
+        <li>Gestion CI/CD pour déploiement en continu.</li>
+    </ul>
+</ProjectLayout>

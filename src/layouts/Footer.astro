@@ -1,13 +1,30 @@
 ---
 import SocialLinks from "../components/shared/SocialLinks.astro";
+
+const currentYear = new Date().getFullYear();
 ---
 
-<footer class="footer footer-center p-6 bg-base-300 text-base-content text-sm">
-    <div>
-        <div class="mt-2">
-            <SocialLinks />
+<footer class="pb-10">
+    <div class="shell">
+        <div class="border-t pt-8" style="border-color: var(--ink-strong);">
+            <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+                <div>
+                    <p class="m-0 font-semibold tracking-tight" style="color: var(--ink-strong);">
+                        Jordan Pantin
+                    </p>
+                    <p class="muted-copy m-0 mt-2 max-w-md">
+                        Lead tech .NET et Angular. Architecture applicative,
+                        accompagnement technique et produits web et mobile.
+                    </p>
+                </div>
+
+                <div class="flex flex-col gap-4 md:items-end">
+                    <SocialLinks />
+                    <p class="mono-label m-0">
+                        © {currentYear} · Tous droits réservés · Fin du document
+                    </p>
+                </div>
+            </div>
         </div>
-        
-        <p>© {new Date().getFullYear()} - Tous droits réservés</p>
     </div>
 </footer>

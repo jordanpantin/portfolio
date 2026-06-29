@@ -1,34 +1,52 @@
 ---
-import { skills } from "../../data/skills";
+import { skillGroups } from "../../data/skills";
 import AnimatedCard from "../shared/AnimatedCard.astro";
 ---
 
-<section class="py-24 bg-base-100" id="skills">
-    <div class="container mx-auto px-6">
-        <h2 class="text-5xl font-bold text-center mb-16 text-primary">
-            Mes technologies
-        </h2>
+<section class="doc-section" id="skills">
+    <div class="shell">
+        <div class="doc-header">
+            <span class="doc-no">03 — Stack</span>
+            <span class="doc-meta hidden sm:block">Technologies en usage courant</span>
+        </div>
 
-        <div
-            class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div class="mb-12 grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
+            <h2 class="section-title">
+                Une base technique choisie pour durer dans un contexte
+                d'entreprise<span class="accent-dot">.</span>
+            </h2>
+
+            <p class="body-copy m-0 lg:max-w-md lg:justify-self-end">
+                Je privilégie les technologies qui tiennent dans la durée, qui
+                s'intègrent bien dans une équipe et qui restent lisibles quand
+                l'application change de périmètre, de rythme ou de charge.
+            </p>
+        </div>
+
+        <div class="grid gap-10 md:grid-cols-2 md:gap-14">
             {
-                skills.map((skill, index) => (
-                    <AnimatedCard delay={index * 80}>
-                        <div class="group">
-                            <div class="card bg-base-200/80 backdrop-blur-sm border border-base-300 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                                <div class="flex flex-col items-center text-center">
-                                    <div class="mb-4 bg-{skill.color}/20 rounded-2xl p-4 flex items-center justify-center">
-                                        <iconify-icon
-                                            icon={skill.icon}
-                                            style="font-size: 56px;"
-                                            class={`text-${skill.color}`}></iconify-icon>
-                                    </div>
-                                    <p class="text-lg font-semibold text-base-content">
-                                        {skill.name}
-                                    </p>
-                                </div>
+                skillGroups.map((group, groupIndex) => (
+                    <AnimatedCard delay={groupIndex * 80}>
+                        <section>
+                            <div class="border-b pb-3" style="border-color: var(--ink-strong);">
+                                <h3 class="row-title">{group.title}</h3>
                             </div>
-                        </div>
+
+                            <p class="muted-copy mt-4">{group.copy}</p>
+
+                            <ul class="m-0 mt-5 list-none p-0">
+                                {group.items.map((skill, index) => (
+                                    <li
+                                        class="flex items-baseline justify-between gap-4 border-b py-2.5"
+                                        style="border-color: var(--hairline);">
+                                        <span class="font-medium" style="color: var(--ink-strong);">
+                                            {skill.name}
+                                        </span>
+                                        <span class="idx">{String(index + 1).padStart(2, "0")}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </section>
                     </AnimatedCard>
                 ))
             }

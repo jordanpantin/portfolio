@@ -1,117 +1,71 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { colorForTag } from "../../lib/tagColor";
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
 ---
 
-<Layout title="Gestion applications campagnes téléphoniques">
-    <main class="container mx-auto px-4 py-8">
-        <section id="hero" class="mb-8">
-            <div class="flex items-center justify-between mb-4">
-                <h1 class="text-3xl font-bold">
-                    Conception et réalisation d'applications de gestion des
-                    campagnes téléphoniques
-                </h1>
+<ProjectLayout
+    title="Gestion applications campagnes téléphoniques"
+    reference="P-05 · Teletech International"
+    heading="Conception et réalisation d'applications de gestion des campagnes téléphoniques"
+    lede="En charge de plusieurs modules : gestion d'envois, calendriers commerciaux, fichiers audio."
+    tags={[".NET", "Angular", "SQL Server", "ELK", "GitLab"]}>
+    <h2>Développements fonctionnels</h2>
+    <ul>
+        <li>
+            <strong>Gestion et suivi des envois mail, SMS et voicemail :</strong>
+            conception des flux d'envoi, suivi des états et mise en place de
+            métriques opérationnelles.
+        </li>
+        <li>
+            <strong>Calendrier prospects :</strong> développement d'une
+            application pour gérer les rendez-vous commerciaux, synchronisation
+            et notifications.
+        </li>
+        <li>
+            <strong>Gestion des fichiers audio :</strong> stockage, lecture et
+            liaison des enregistrements d'appels.
+        </li>
+        <li>
+            <strong>Application de relance d'impayés :</strong> interface dédiée
+            permettant la relance automatisée des factures impayées, avec dépôt
+            d'un message vocal.
+        </li>
+        <li>
+            <strong>Extension Chrome :</strong> création de tickets de bugs par
+            les conseillers téléphoniques, avec récupération des logs de la
+            console et capture d'écran, facilitant le debug côté IT.
+        </li>
+    </ul>
 
-                <a href="/#projects" class="btn btn-primary"
-                    >Retour aux Projets</a
-                >
-            </div>
-            <p class="text-sm text-base-content/70 mb-2">
-                Teletech International
-            </p>
-            <p class="mb-4">
-                Conception et réalisation d'applications de gestion des
-                campagnes téléphoniques, en charge de plusieurs modules (gestion
-                d'envois, calendriers commerciaux, fichiers audio).
-            </p>
-        </section>
+    <h2>Infrastructures et outils</h2>
+    <ul>
+        <li>
+            <strong>Mise en place ELK Stack :</strong> intégration de la suite
+            Elasticsearch, Logstash, Kibana avec support des logs historiques
+            stockés dans les fichiers existants.
+        </li>
+        <li>
+            <strong>Mise en place CI/CD sur GitLab :</strong> automatisation du
+            déploiement des applications .NET et JS, sur Windows Server avec IIS.
+        </li>
+        <li>
+            <strong>Librairies et packages :</strong> création de librairies
+            JavaScript et de packages NuGet pour mutualiser les fonctionnalités
+            entre projets et faciliter la réutilisabilité.
+        </li>
+    </ul>
 
-        <section id="contributions" class="mb-8">
-            <div class="mb-8">
-                <h2 class="text-xl font-bold mb-4">
-                    Développements fonctionnels
-                </h2>
-                <ul class="list-disc pl-6 space-y-3 mb-6">
-                    <li>
-                        <strong
-                            >Gestion & suivi des envois mail, SMS et voicemail</strong
-                        > : conception des flux d'envoi, suivi des états et mise
-                        en place de métriques opérationnelles.
-                    </li>
-                    <li>
-                        <strong>Calendrier prospects</strong> : développement d'une
-                        application pour gérer les rendez-vous commerciaux, synchronisation
-                        et notifications.
-                    </li>
-                    <li>
-                        <strong>Gestion des fichiers audios</strong> : stockage,
-                        lecture et liaison des enregistrements d'appels.
-                    </li>
-                    <li>
-                        <strong
-                            >Application de relance d'impayés</strong
-                        > : développement d'une interface dédiée permettant la relance automatisée des factures impayées, avec dépôt d'un message vocal
-                    </li>
-                    <li>
-                        <strong>Création extension Chrome</strong> : pour permettre
-                        aux conseillers téléphoniques la création de ticket de bugs,
-                        avec récupération des logs de la console et capture d'écran,
-                        facilitant le debug et la corrections des bugs du coté IT.
-                    </li>
-                </ul>
-            </div>
-
-            <div class="mb-8">
-                <h2 class="text-xl font-bold mb-4">
-                    Infrastructures et outils
-                </h2>
-                <ul class="list-disc pl-6 space-y-3 mb-6">
-                    <li>
-                        <strong>Mise en place ELK Stack</strong> : intégration de
-                        la suite Elasticsearch, Logstash, Kibana avec support des
-                        logs historiques stockés dans les fichiers existants.
-                    </li>
-                    <li>
-                        <strong>Mise en place CI/CD sur Gitlab</strong> : automatisation
-                        du déploiement des applications .NET et JS, sur Windows Server
-                        avec IIS.
-                    </li>
-                    <li>
-                        <strong>Librairies et packages</strong> : création de librairies
-                        JavaScript et de packages NuGet pour mutualiser les fonctionnalités
-                        entre projets et faciliter la réutilisabilité.
-                    </li>
-                </ul>
-            </div>
-
-            <div class="flex flex-wrap gap-2">
-                {
-                    [
-                        ".NET",
-                        "SQL server",
-                        "API",
-                        "IIS",
-                        "NuGet",
-                        "JS Libraries",
-                        "Angular",
-                        "Svelte",
-                    ].map((t) => (
-                        <div class={`badge badge-${colorForTag(t)} badge-sm`}>
-                            {t}
-                        </div>
-                    ))
-                }
-            </div>
-        </section>
-    </main>
-</Layout>
-
-<style>
-    @media (max-width: 768px) {
-        .btn.btn-primary.absolute {
-            position: static;
-            transform: none;
-            margin-top: 1rem;
+    <div class="tag-row">
+        {
+            [
+                ".NET",
+                "SQL Server",
+                "API",
+                "IIS",
+                "NuGet",
+                "JS Libraries",
+                "Angular",
+                "Svelte",
+            ].map((t) => <span>{t}</span>)
         }
-    }
-</style>
+    </div>
+</ProjectLayout>

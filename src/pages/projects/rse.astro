@@ -1,181 +1,121 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { colorForTag } from "../../lib/tagColor";
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
 ---
 
-<Layout title="Refonte & Migration - Application RSE">
-    <main class="container mx-auto px-4 py-8">
-        <section id="hero" class="mb-12">
-            <div class="flex flex-row items-center justify-center mb-8">
-                <a href="/#projects" class="btn btn-primary invisible"
-                    >Retour aux Projets</a
-                >
-                <h1 class="text-4xl font-bold text-center px-4">
-                    Refonte et Migration d'une application de gestion de
-                    questionnaires RSE
-                </h1>
-                <a href="/#projects" class="btn btn-primary"
-                    >Retour aux Projets</a
-                >
-            </div>
-            <p class="text-xl mb-6 text-center">
-                Projet de modernisation, reprise technique et migration d'une
-                plateforme de questionnaires RSE (Responsabilité Sociétale des
-                Entreprises).
-            </p>
-        </section>
+<ProjectLayout
+    title="Refonte & Migration - Application RSE"
+    reference="P-01 · Neos-SDI"
+    heading="Refonte et migration d'une application de gestion de questionnaires RSE"
+    lede="Projet de modernisation, reprise technique et migration d'une plateforme de questionnaires RSE (Responsabilité Sociétale des Entreprises)."
+    tags={[".NET", "Angular", "Azure", "SQL Server", "MongoDB"]}>
+    <h2>Contexte et objectifs</h2>
+    <p>
+        L'objectif était double : moderniser l'application existante (UX, code,
+        tests, CI/CD) et migrer les données d'un modèle NoSQL (MongoDB) vers un
+        modèle relationnel (SQL Server) pour faciliter les requêtes analytiques
+        et l'intégration avec l'écosystème Azure.
+    </p>
 
-        <section id="overview" class="mb-10">
-            <h2 class="text-2xl font-bold mb-4">Contexte & Objectifs</h2>
-            <p class="mb-4">
-                L'objectif était double : moderniser l'application existante
-                (UX, code, tests, CI/CD) et migrer les données d'un modèle NoSQL
-                (MongoDB) vers un modèle relationnel (SQL Server) pour faciliter
-                les requêtes analytiques et l'intégration avec l'écosystème
-                Azure.
-            </p>
-        </section>
+    <h2>Refonte de l'application</h2>
+    <ul>
+        <li>
+            <strong>Conception technique :</strong> refactorisation de l'architecture
+            pour séparer clairement API, services métiers et accès aux données ;
+            définition d'un schéma de données cible et d'un plan de migration.
+        </li>
+        <li>
+            <strong>Accompagnement de l'équipe :</strong> ateliers d'architecture,
+            pair-programming, formation aux bonnes pratiques et aux outils Azure
+            utilisés pendant le projet.
+        </li>
+        <li>
+            <strong>Relecture de code :</strong> mise en place de revues
+            systématiques, conventions de code et sécurité.
+        </li>
+        <li>
+            <strong>Déploiement :</strong> pipelines CI/CD pour déploiement
+            automatisé aux environnements de dev / recette / production avec
+            tests automatisés.
+        </li>
+    </ul>
 
-        <section id="axis-1" class="mb-10">
-            <h2 class="text-2xl font-bold mb-4">Refonte de l'application</h2>
-            <ul class="list-disc pl-6 space-y-3">
-                <li>
-                    <strong>Conception technique :</strong> refactorisation de l'architecture
-                    pour séparer clairement API, services métiers et accès aux données
-                    ; définition d'un schéma de données cible et d'un plan de migration.
-                </li>
-                <li>
-                    <strong>Accompagnement de l'équipe :</strong> ateliers d'architecture,
-                    pair-programming, formation aux bonnes pratiques et aux outils
-                    Azure utilisés pendant le projet.
-                </li>
-                <li>
-                    <strong>Relecture de code :</strong> mise en place de revues
-                    systématiques, conventions de code et sécurité.
-                </li>
-                <li>
-                    <strong>Déploiement :</strong> pipelines CI/CD pour déploiement
-                    automatisé aux environnements de dev / recette / production avec
-                    tests automatisés.
-                </li>
-            </ul>
-
-            <!-- Tags spécifiques à la refonte -->
-            <div class="flex flex-wrap gap-2 mt-4">
-                {
-                    [
-                        "Architecture",
-                        "API",
-                        ".NET",
-                        "Angular",
-                        "Code Review",
-                        "CI/CD",
-                        "Testing",
-                        "Pair Programming",
-                    ].map((t) => (
-                        <div class={`badge badge-${colorForTag(t)} badge-sm`}>
-                            {t}
-                        </div>
-                    ))
-                }
-            </div>
-        </section>
-
-        <section id="axis-2" class="mb-10">
-            <h2 class="text-2xl font-bold mb-4">
-                Migration MongoDB vers SQL Server
-            </h2>
-            <p class="mb-4">
-                La migration de la base a été réalisée en plusieurs étapes afin
-                d'assurer l'intégrité des données et de minimiser la coupure de
-                service.
-            </p>
-
-            <h3 class="text-xl font-semibold mt-4">Étapes clés</h3>
-            <ol class="list-disc pl-6 space-y-3 mb-4">
-                <li>
-                    <strong>Import initial :</strong> import depuis MongoDB vers
-                    Azure Cosmos DB via la CLI mongo.
-                </li>
-                <li>
-                    <strong>Transformation :</strong> utilisation de pipelines Azure
-                    Synapse pour transformer et préparer les données afin d'alimenter
-                    les tables relationnelles SQL Server.
-                </li>
-            </ol>
-
-            <h3 class="text-xl font-semibold mt-4">
-                Azure Functions développées
-            </h3>
-            <ul class="list-disc pl-6 space-y-3 mb-6">
-                <li>
-                    <strong
-                        >Migration des comptes utilisateurs vers Azure AD B2C :</strong
-                    > fonction qui lit les comptes existants, normalise les identifiants
-                    et crée/associe les comptes dans Azure AD B2C avec mapping des
-                    attributs et des rôles.
-                </li>
-                <li>
-                    <strong>Extraction GridFS vers Blob Storage :</strong> fonction
-                    qui parcourt les fichiers stockés via GridFS dans Cosmos,
-                    extrait et copie les blobs vers Azure Blob Storage en conservant
-                    les métadonnées et en mettant à jour les références dans la base
-                    SQL.
-                </li>
-            </ul>
-
-            <h3 class="text-xl font-semibold mt-4">
-                Points techniques et challenges
-            </h3>
-            <ul class="list-disc pl-6 space-y-3">
-                <li>
-                    Gestion des structures imbriquées MongoDB et mapping vers
-                    tables relationnelles (relations 1-N et N-N) ; conception
-                    des clés et index SQL pour performances.
-                </li>
-                <li>
-                    Assurer la continuité des opérations : synchronisation
-                    incrémentale, gestion des conflits et stratégie de reprise
-                    en cas d'erreur.
-                </li>
-            </ul>
-
-            <!-- Tags spécifiques à la migration -->
-            <div class="flex flex-wrap gap-2 mt-4">
-                {
-                    [
-                        "MongoDB",
-                        "Azure Synapse",
-                        "Azure Cosmos DB",
-                        "CLI mongo",
-                        "SQL Server",
-                        "Azure Functions",
-                        "GridFS",
-                        "Azure Blob Storage",
-                        "Azure AD B2C",
-                        "Data Migration",
-                    ].map((t) => (
-                        <div class={`badge badge-${colorForTag(t)} badge-sm`}>
-                            {t}
-                        </div>
-                    ))
-                }
-            </div>
-        </section>
-    </main>
-</Layout>
-
-<style>
-    @media (max-width: 768px) {
-        .relative.text-center {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+    <div class="tag-row">
+        {
+            [
+                "Architecture",
+                "API",
+                ".NET",
+                "Angular",
+                "Code Review",
+                "CI/CD",
+                "Testing",
+                "Pair Programming",
+            ].map((t) => <span>{t}</span>)
         }
-        .btn.btn-primary.absolute {
-            position: static;
-            transform: none;
-            margin-top: 1rem;
+    </div>
+
+    <h2>Migration MongoDB vers SQL Server</h2>
+    <p>
+        La migration de la base a été réalisée en plusieurs étapes afin d'assurer
+        l'intégrité des données et de minimiser la coupure de service.
+    </p>
+
+    <h3>Étapes clés</h3>
+    <ol>
+        <li>
+            <strong>Import initial :</strong> import depuis MongoDB vers Azure
+            Cosmos DB via la CLI mongo.
+        </li>
+        <li>
+            <strong>Transformation :</strong> utilisation de pipelines Azure
+            Synapse pour transformer et préparer les données afin d'alimenter les
+            tables relationnelles SQL Server.
+        </li>
+    </ol>
+
+    <h3>Azure Functions développées</h3>
+    <ul>
+        <li>
+            <strong>Migration des comptes utilisateurs vers Azure AD B2C :</strong>
+            fonction qui lit les comptes existants, normalise les identifiants et
+            crée/associe les comptes dans Azure AD B2C avec mapping des attributs
+            et des rôles.
+        </li>
+        <li>
+            <strong>Extraction GridFS vers Blob Storage :</strong> fonction qui
+            parcourt les fichiers stockés via GridFS dans Cosmos, extrait et copie
+            les blobs vers Azure Blob Storage en conservant les métadonnées et en
+            mettant à jour les références dans la base SQL.
+        </li>
+    </ul>
+
+    <h3>Points techniques et challenges</h3>
+    <ul>
+        <li>
+            Gestion des structures imbriquées MongoDB et mapping vers tables
+            relationnelles (relations 1-N et N-N) ; conception des clés et index
+            SQL pour performances.
+        </li>
+        <li>
+            Assurer la continuité des opérations : synchronisation incrémentale,
+            gestion des conflits et stratégie de reprise en cas d'erreur.
+        </li>
+    </ul>
+
+    <div class="tag-row">
+        {
+            [
+                "MongoDB",
+                "Azure Synapse",
+                "Azure Cosmos DB",
+                "CLI mongo",
+                "SQL Server",
+                "Azure Functions",
+                "GridFS",
+                "Azure Blob Storage",
+                "Azure AD B2C",
+                "Data Migration",
+            ].map((t) => <span>{t}</span>)
         }
-    }
-</style>
+    </div>
+</ProjectLayout>

@@ -1,67 +1,91 @@
 ---
+const startYear = 2017;
+const currentYear = new Date().getFullYear();
+const yearsOfExperience = currentYear - startYear;
 
+const interventions = [
+    "Clarifier une direction technique quand le produit change d'échelle ou de rythme",
+    "Remettre un socle applicatif sous contrôle avant qu'il freine la livraison",
+    "Donner à l'équipe des repères de conception, de priorisation et d'exécution",
+];
+
+const cartouche = [
+    { label: "Profil", value: "Lead tech .NET · Architecte applicatif" },
+    { label: "Expérience", value: `${yearsOfExperience}+ ans — applications métier et produits internes` },
+    { label: "Stack", value: ".NET · Angular · Azure" },
+    { label: "Base", value: "Dijon, France" },
+    { label: "Statut", value: "En poste — ouvert aux discussions" },
+];
 ---
 
-<section
-    class="hero min-h-screen bg-base-200 relative overflow-hidden"
-    id="home">
-    <!-- BACKGROUND -->
-    <div
-        class="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20">
-    </div>
-
-    <div class="hero-content text-center relative z-10 px-6">
-        <div class="max-w-4xl">
-            <!-- Title -->
-            <h1 class="text-5xl md:text-7xl font-bold text-primary mb-6">
-                Bonjour, je suis <span class="text-secondary">Jordan</span>
-            </h1>
-
-            <!-- Role -->
-            <p class="text-2xl md:text-3xl text-base-content/80 mb-8">
-                Développeur Full-Stack • Lead Tech • .NET & Angular
-            </p>
-
-            <!-- About me -->
-            <div
-                class="prose prose-lg mx-auto text-base-content/70 max-w-3xl mb-10">
-                <p class="leading-relaxed">
-                    Actuellement en poste en tant que lead tech, avec 8 ans
-                    d'expérience, spécialisé dans la conception, le
-                    développement et le déploiement de solutions web et mobiles.
+<section class="doc-section" id="home" style="padding-top: clamp(3rem, 6vw, 5rem);">
+    <div class="shell">
+        <div class="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+            <div>
+                <p class="mono-label mb-6">
+                    <span style="color: var(--accent);">§01</span> — Jordan Pantin, référent technique
                 </p>
+
+                <h1 class="display-title">
+                    Lead tech .NET<span class="accent-dot">.</span>
+                </h1>
+
+                <p class="lede mt-7">
+                    J'aide des équipes à cadrer une direction technique, stabiliser
+                    un socle applicatif et tenir une exécution plus lisible dans la durée.
+                </p>
+
+                <div class="mt-9 flex flex-wrap items-center gap-4">
+                    <a href="#contact" class="btn btn-ink">
+                        Échanger sur un poste
+                        <span aria-hidden="true">→</span>
+                    </a>
+                    <a href="#projects" class="btn btn-ghost">Voir les projets</a>
+                    <a
+                        href="/CV_Jordan_PANTIN.pdf"
+                        target="_blank"
+                        rel="noreferrer"
+                        class="link-arrow">
+                        CV
+                        <span class="arrow" aria-hidden="true">↗</span>
+                    </a>
+                </div>
+
+                <div class="mt-14">
+                    <p class="mono-label mb-2">Types d'intervention</p>
+                    <div class="ruled-list">
+                        {
+                            interventions.map((item, index) => (
+                                <div class="grid grid-cols-[2.5rem_1fr] gap-3 border-b py-4" style="border-color: var(--hairline);">
+                                    <span class="idx">0{index + 1}</span>
+                                    <p class="body-copy m-0">{item}</p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
             </div>
 
-            <!-- buttons CTA -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <a href="#whatido" class="btn btn-primary btn-lg gap-2">
-                    Voir mes compétences
-                    <iconify-icon icon="tabler:arrow-down" class="w-5 h-5"
-                    ></iconify-icon>
-                </a>
-                <a href="/CV_Jordan_PANTIN.pdf" target="_blank" class="btn btn-outline btn-lg gap-2">
-                    Télécharger mon CV
-                    <iconify-icon icon="tabler:download" class="w-5 h-5"
-                    ></iconify-icon>
-                </a>
-            </div>
+            <aside class="lg:pt-12">
+                <div class="cartouche">
+                    <p class="cartouche-caption m-0">Fiche d'identification</p>
+                    <dl class="m-0">
+                        {
+                            cartouche.map((row) => (
+                                <div class="cartouche-row">
+                                    <dt>{row.label}</dt>
+                                    <dd>{row.value}</dd>
+                                </div>
+                            ))
+                        }
+                    </dl>
+                </div>
 
-            <!-- button for scroll -->
-            <div class="mt-16">
-                <a
-                    href="#contact"
-                    class="text-primary/80 hover:text-primary transition-colors">
-                    <iconify-icon
-                        icon="tabler:chevron-down"
-                        class="w-10 h-5 mx-auto"></iconify-icon>
-                    <p class="text-sm">Me contacter</p>
-                </a>
-            </div>
+                <p class="muted-copy mt-6">
+                    Un profil de référent technique pour des environnements où il faut
+                    arbitrer, simplifier et faire converger une équipe avec le produit.
+                </p>
+            </aside>
         </div>
-    </div>
-
-    <!-- Bottom wave effect -->
-    <div
-        class="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-base-200 to-transparent">
     </div>
 </section>

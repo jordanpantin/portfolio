@@ -9,11 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.8",
     "@astrojs/node": "^9.5.0",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.15.4",
     "daisyui": "^5.4.7",
     "iconify-icon": "^3.0.2",
-    "tailwindcss": "^4.1.16"
+    "tailwindcss": "^4.1.16",
+    "typescript": "^5.9.3"
   }
 }

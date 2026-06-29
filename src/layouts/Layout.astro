@@ -3,7 +3,7 @@ import "../assets/app.css";
 import Footer from "./Footer.astro";
 import Menu from "./Menu.astro";
 
-const { title = "Jordan PANTIN Portfolio" } = Astro.props;
+const { title = "Jordan PANTIN | Lead Tech .NET et Architecte Applicatif" } = Astro.props;
 ---
 
 <html lang="fr" data-theme="light">
@@ -11,27 +11,38 @@ const { title = "Jordan PANTIN Portfolio" } = Astro.props;
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title}</title>
-
+        <meta
+            name="description"
+            content="Portfolio de Jordan Pantin, lead tech .NET et architecte applicatif. Architecture logicielle, delivery, accompagnement d'équipe et produits web/mobile." />
         <link rel="icon" href="/favicon.svg" />
 
-        <style is:global>
-            html {
-                scroll-behavior: smooth !important;
-            }
-        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+            rel="stylesheet"
+        />
+
+        <script is:inline>
+            // Applique le thème avant le premier rendu pour éviter le flash.
+            (() => {
+                const saved = localStorage.getItem("theme");
+                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                document.documentElement.setAttribute(
+                    "data-theme",
+                    saved || (prefersDark ? "dark" : "light")
+                );
+            })();
+        </script>
     </head>
 
-    <body class="bg-base-200 text-base-content min-h-screen flex flex-col">
+    <body>
         <Menu />
 
-        <main class="flex-1 px-4 py-6 md:px-8 lg:px-12">
+        <main>
             <slot />
         </main>
 
         <Footer />
     </body>
-
-    <script>
-        import "iconify-icon";
-    </script>
 </html>
